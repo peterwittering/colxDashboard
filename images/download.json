@@ -1,0 +1,19 @@
+[
+    {
+        "id": "colossuscoinxt", 
+        "name": "ColossusCoinXT", 
+        "symbol": "COLX", 
+        "rank": "281", 
+        "price_usd": "0.00219966", 
+        "price_btc": "0.00000024", 
+        "24h_volume_usd": "45039.3", 
+        "market_cap_usd": "23590779.0", 
+        "available_supply": "10724738924.0", 
+        "total_supply": "10784272304.0", 
+        "max_supply": null, 
+        "percent_change_1h": "-2.76", 
+        "percent_change_24h": "-5.44", 
+        "percent_change_7d": "-33.46", 
+        "last_updated": "1520898853"
+    }
+]

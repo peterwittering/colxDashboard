@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$.ajax({
-		url : "https://min-api.cryptocompare.com/data/histohour?fsym=COLX&tsym=GBP&limit=168",
+		url : "https://min-api.cryptocompare.com/data/histohour?fsym=COLX&tsym=BTC&limit=168",
         data: "rows=168",
         dataType: 'json',
 		success : function(results){

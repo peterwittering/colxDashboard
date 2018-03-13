@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>COLX</title>
+
+    <script language="javascript" type="text/javascript" src="vendor/jquery/jquery.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/logo-nav.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- icons for iOS -->
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png" />
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="images/colossus_logo.svg" width="150" height="30" alt="">
+        </a>
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>-->
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container container-dark text-center">
+
+        <p class="text-center">
+        <h3 id="rank"></h3>
+        <h2 id="satoshi"></h2>
+        <h5 id="usd"></h5>
+        <h5 id="gbp"></h5>
+        </br>
+        <div class="text-center">
+			       <canvas id="mycanvas" width="400" height="150"></canvas>
+		    </div>
+        <h6 id="time_span"></h6>
+
+    </div>
+    <!-- /.container -->
+
+    <script id="source" language="javascript" type="text/javascript">
+
+        function round(value, decimals) {
+          return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+        }
+
+        $(function ()
+        {
+        $.ajax({
+          url: 'https://api.coinmarketcap.com/v1/ticker/colossuscoinxt/?convert=gbp',
+          dataType: 'json',
+          success: function(data)
+          {
+            $('#rank').html("ColossusXT (COLX)<br><h5>Rank #"+data[0].rank+"</h5>");
+            $('#usd').html("$"+round(data[0].price_usd, 7));
+            $('#satoshi').html(data[0].price_btc.replace(/^0+/,"").replace(/^./,"").replace(/^0+/,"")+" Satoshi");
+            $('#gbp').html("£"+round(data[0].price_gbp, 7));
+            $('#time_span').html("Last 14 days");
+          }
+        });
+        });
+    </script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="vendor/chartjs/Chart.min.js"></script>
+    <script type="text/javascript" src="js/sat_linechart.js"></script>
+
+  </body>
+
+</html>

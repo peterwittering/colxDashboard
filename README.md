@@ -6,4 +6,4 @@ Simply download and open colxDashboard.html to run locally or host the package.
 
 Enjoy!
 
-![alt text](/images/demo.png)
+![alt text](/images/colxDashboard.png)

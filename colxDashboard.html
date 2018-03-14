@@ -92,7 +92,7 @@
             $('#usd').html("$"+round(data[0].price_usd, 7));
             $('#satoshi').html(data[0].price_btc.replace(/^0+/,"").replace(/^./,"").replace(/^0+/,"")+" Satoshi");
             $('#gbp').html("£"+round(data[0].price_gbp, 7));
-            $('#time_span').html("Last 14 days");
+            $('#time_span').html("Last 30 days (GBP)");
           }
         });
         });

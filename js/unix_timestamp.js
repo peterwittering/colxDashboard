@@ -19,8 +19,8 @@ function convertTimestamp(timestamp) {
 		h = 12;
 	}
 
-	// ie: 2013-02-18, 8:35 AM
-	time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
+	// ie: 02-12-2013, 8:35 AM
+	time = dd + '-' + mm + '-' + yyyy + ', ' + h + ':' + min + ' ' + ampm;
 
 	return time;
 }

@@ -6,12 +6,17 @@ $(document).ready(function(){
 		success : function(results){
 			var xgbp = [];
 			var ydate = [];
-			//console.log(Object.values(results));
+			var lastupdated = [];
+
+			lastupdated.push(convertTimestamp(results.Data[results.Data.length-1].time));
+			console.log(Object.values(results));
+			console.log(Object.values(lastupdated));
+			$('#time_span').html("Last 30 days in GBP - Last update: "+lastupdated);
 			//console.log(Object.values(xgbp));
 			//console.log(Object.values(ydate));
 			for(var i in results.Data) {
 				xgbp.push(results.Data[i].close);
-				ydate.push(results.Data[i].time);
+				ydate.push(convertTimestamp(results.Data[i].time));
 			}
 			//console.log(Object.values(xgbp));
 			//console.log(Object.values(ydate));
@@ -19,7 +24,7 @@ $(document).ready(function(){
                 labels: ydate,
 				datasets: [
 					{
-						label: "xgbp",
+						label: "GBP",
 						fill: true,
 						lineTension: 0.1,
 						backgroundColor: "#343a40",

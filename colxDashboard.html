@@ -92,7 +92,6 @@
             $('#usd').html("$"+round(data[0].price_usd, 7));
             $('#satoshi').html(data[0].price_btc.replace(/^0+/,"").replace(/^./,"").replace(/^0+/,"")+" Satoshi");
             $('#gbp').html("£"+round(data[0].price_gbp, 7));
-            $('#time_span').html("Last 30 days (GBP)");
           }
         });
         });
@@ -103,7 +102,7 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="vendor/chartjs/Chart.min.js"></script>
     <script type="text/javascript" src="js/sat_linechart.js"></script>
-
+    <script type="text/javascript" src="js/unix_timestamp.js"></script>
   </body>
 
 </html>

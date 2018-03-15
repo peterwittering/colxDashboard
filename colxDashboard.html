@@ -67,13 +67,24 @@
         <h5 id="usd"></h5>
         <h5 id="gbp"></h5>
         </br>
-        <div class="text-center">
+        <h6>Currency: <select id="currency" onchange="updateCurrency(this.value), createGraph()"><option value="GBP">GBP</option><option value="BTC">BTC</option><option value="USD">USD</option></select></h6>
+      </br>
+        <div id="cryptoGraph" class="text-center">
 			       <canvas id="mycanvas" width="400" height="150"></canvas>
 		    </div>
-        <h6 id="time_span"></h6>
-
+        <h6 id="txtlastUpdate"></h6>
     </div>
     <!-- /.container -->
+
+
+
+    <script type="text/javascript">
+        function updateCurrency(data) {
+            value = data;
+            console.log(Object.values(currency.value));
+            $("#cryptoGraph").load(" #cryptoGraph > *");
+        }
+     </script>
 
     <script id="source" language="javascript" type="text/javascript">
 
@@ -92,10 +103,83 @@
             $('#usd').html("$"+round(data[0].price_usd, 7));
             $('#satoshi').html(data[0].price_btc.replace(/^0+/,"").replace(/^./,"").replace(/^0+/,"")+" Satoshi");
             $('#gbp').html("£"+round(data[0].price_gbp, 7));
+            $('#dd').html("£"+round(data[0].price_gbp, 7));
           }
         });
         });
     </script>
+
+    <script>
+    $(document).ready(function(){
+    	$.ajax({
+    		url : "https://min-api.cryptocompare.com/data/histohour?fsym=COLX&tsym="+currency.value+"&limit=720",
+            data: "rows=600",
+            dataType: 'json',
+    		success : function(results){
+    			var xgbp = [];
+    			var ydate = [];
+    			var lastupdated = [];
+
+    			lastupdated.push(convertTimestamp(results.Data[results.Data.length-1].time));
+    			//console.log(Object.values(results));
+    			//console.log(Object.values(lastupdated));
+
+          $('#txtlastUpdate').html("Last update: "+lastupdated);
+    			//console.log(Object.values(xgbp));
+    			console.log(Object.values(currency.value));
+    			//console.log(Object.values(ydate));
+    			for(var i in results.Data) {
+    				xgbp.push(results.Data[i].close);
+    				ydate.push(convertTimestamp(results.Data[i].time));
+    			}
+    			//console.log(Object.values(xgbp));
+    			//console.log(Object.values(ydate));
+    			var chartdata = {
+                    labels: ydate,
+    				datasets: [
+    					{
+    						label: "GBP",
+    						fill: true,
+    						lineTension: 0.1,
+    						backgroundColor: "#343a40",
+    						data: xgbp
+    					}
+    				]
+    			};
+
+    			var ctx = $("#mycanvas");
+
+    			var LineGraph = new Chart(ctx, {
+                    responsive: true,
+    				type: 'line',
+    				data: chartdata,
+                    options: {
+                        elements: { point: { radius: 0 } },
+                        legend: { display: false},
+                        scales: {
+                            xAxes: [{
+                                        gridLines: {
+                                            display:false
+                                        },
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }],
+                            yAxes: [{
+                                        gridLines: {
+                                            display:false
+                                        }
+                                    }]
+                            }
+                    }
+    			});
+    		},
+    		error : function(results) {
+
+    		}
+    	});
+    });
+</script>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

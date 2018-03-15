@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>COLX</title>
+    <title>colxDashboard v0.1</title>
 
     <script language="javascript" type="text/javascript" src="vendor/jquery/jquery.js"></script>
     <!-- Bootstrap core CSS -->
@@ -81,8 +81,7 @@
     <script type="text/javascript">
         function updateCurrency(data) {
             value = data;
-            console.log(Object.values(currency.value));
-            $("#cryptoGraph").load(" #cryptoGraph > *");
+            //console.log(Object.values(currency.value));
         }
      </script>
 
@@ -103,7 +102,6 @@
             $('#usd').html("$"+round(data[0].price_usd, 7));
             $('#satoshi').html(data[0].price_btc.replace(/^0+/,"").replace(/^./,"").replace(/^0+/,"")+" Satoshi");
             $('#gbp').html("£"+round(data[0].price_gbp, 7));
-            $('#dd').html("£"+round(data[0].price_gbp, 7));
           }
         });
         });
@@ -126,7 +124,7 @@
 
           $('#txtlastUpdate').html("Last update: "+lastupdated);
     			//console.log(Object.values(xgbp));
-    			console.log(Object.values(currency.value));
+    			//console.log(Object.values(currency.value));
     			//console.log(Object.values(ydate));
     			for(var i in results.Data) {
     				xgbp.push(results.Data[i].close);

@@ -60,7 +60,9 @@ $(document).ready(function(){
                                 }]
                         }
                 }
-			});
+			}
+
+		);
 		},
 		error : function(results) {
 
